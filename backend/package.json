@@ -32,13 +32,9 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
-    
-    
     "@types/dotenv": "^8.2.3",
-   
     "@types/mongoose": "^5.11.97",
     "@types/node": "^22.10.2",
-   
     "@types/passport-google-oauth20": "^2.0.16",
     "@types/passport-local": "^1.0.38",
     "typescript": "^5.7.2"
