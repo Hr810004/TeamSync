@@ -25,6 +25,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // ✅ Fix: Use express-session
 app.use(
+  cors({
+    origin: config.FRONTEND_ORIGIN,
+    credentials: true,
+  })
+);
+
+app.use(
   session({
     secret: config.SESSION_SECRET,
     resave: false,
@@ -42,12 +49,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(
-  cors({
-    origin: config.FRONTEND_ORIGIN,
-    credentials: true,
-  })
-);
 
 app.get("/", (_req, res) => {
   res.status(HTTPSTATUS.OK).json({
