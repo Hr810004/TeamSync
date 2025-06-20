@@ -20,15 +20,11 @@ const seedRoles = async () => {
       const role = roleName as keyof typeof RolePermissions;
       const permissions = RolePermissions[role];
 
-      // Check if the role already exists
       const existingRole = await RoleModel.findOne({ name: role }).session(
         session
       );
       if (!existingRole) {
-        const newRole = new RoleModel({
-          name: role,
-          permissions: permissions,
-        });
+        const newRole = new RoleModel({ name: role, permissions });
         await newRole.save({ session });
         console.log(`Role ${role} added with permissions.`);
       } else {
@@ -38,16 +34,19 @@ const seedRoles = async () => {
 
     await session.commitTransaction();
     console.log("Transaction committed.");
-
     session.endSession();
     console.log("Session ended.");
-
     console.log("Seeding completed successfully.");
   } catch (error) {
     console.error("Error during seeding:", error);
+  } finally {
+    // ✅ Always disconnect the DB
+    await mongoose.disconnect();
+    console.log("MongoDB disconnected. Exiting script.");
   }
 };
 
-seedRoles().catch((error) =>
-  console.error("Error running seed script:", error)
-);
+// Run the seeder
+seedRoles().catch((error) => {
+  console.error("Error running seed script:", error);
+});
