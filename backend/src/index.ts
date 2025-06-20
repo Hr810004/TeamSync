@@ -1,17 +1,14 @@
 import "dotenv/config";
-import express, { NextFunction, Request, Response } from "express";
+import express from "express";
 import cors from "cors";
-import session from "cookie-session";
+import session from "express-session";
 import { config } from "./config/app.config";
 import connectDatabase from "./config/database.config";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 import { HTTPSTATUS } from "./config/http.config";
-import { asyncHandler } from "./middlewares/asyncHandler.middleware";
-import { BadRequestException } from "./utils/appError";
-import { ErrorCodeEnum } from "./enums/error-code.enum";
+import passport from "passport";
 
 import "./config/passport.config";
-import passport from "passport";
 import authRoutes from "./routes/auth.route";
 import userRoutes from "./routes/user.route";
 import isAuthenticated from "./middlewares/isAuthenticated.middleware";
@@ -24,20 +21,24 @@ const app = express();
 const BASE_PATH = config.BASE_PATH;
 
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 
+// ✅ Fix: Use express-session
 app.use(
   session({
-    name: "session",
-    keys: [config.SESSION_SECRET],
-    maxAge: 24 * 60 * 60 * 1000,
-    secure: config.NODE_ENV === "production",
-    httpOnly: true,
-    sameSite: "lax",
+    secret: config.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: config.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: Number(config.SESSION_EXPIRES_IN) || 86400000,
+    },
   })
 );
 
+// ✅ Passport session handling
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -48,13 +49,11 @@ app.use(
   })
 );
 
-// No type annotations here – let Express infer them
 app.get("/", (_req, res) => {
-  res.status(200).json({
+  res.status(HTTPSTATUS.OK).json({
     message: "TeamSync Backend is running 🚀",
   });
 });
-
 
 app.use(`${BASE_PATH}/auth`, authRoutes);
 app.use(`${BASE_PATH}/user`, isAuthenticated, userRoutes);
