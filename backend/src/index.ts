@@ -32,7 +32,7 @@ app.use(
     cookie: {
       secure: config.NODE_ENV === "production",
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: Number(config.SESSION_EXPIRES_IN) || 86400000,
     },
   })
