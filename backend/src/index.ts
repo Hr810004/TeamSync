@@ -16,6 +16,7 @@ import workspaceRoutes from "./routes/workspace.route";
 import memberRoutes from "./routes/member.route";
 import projectRoutes from "./routes/project.route";
 import taskRoutes from "./routes/task.route";
+import MongoStore from "connect-mongo";
 
 const app = express();
 const BASE_PATH = config.BASE_PATH;
@@ -36,15 +37,19 @@ app.use(
     secret: config.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: config.MONGO_URI,
+    }),
     cookie: {
       secure: config.NODE_ENV === "production",
       httpOnly: true,
-      sameSite: "none",
+      sameSite: "none", // Needed for cross-site cookies
+      domain: ".teamsync-harsh810.me", // Shared domain between frontend and backend
       maxAge: Number(config.SESSION_EXPIRES_IN) || 86400000,
-      domain: ".teamsync-harsh810.me",
     },
   })
 );
+
 
 // ✅ Passport session handling
 app.use(passport.initialize());
