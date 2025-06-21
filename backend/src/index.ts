@@ -41,6 +41,7 @@ app.use(
       httpOnly: true,
       sameSite: "none",
       maxAge: Number(config.SESSION_EXPIRES_IN) || 86400000,
+      domain: ".teamsync-harsh810.me",
     },
   })
 );
