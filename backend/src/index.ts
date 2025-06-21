@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 // ✅ Fix: Use express-session
 app.use(
   cors({
-    origin: config.FRONTEND_ORIGIN,
+    origin: "https://teamsync-harsh810.me",
     credentials: true,
   })
 );

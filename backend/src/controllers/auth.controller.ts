@@ -7,20 +7,32 @@ import { registerUserService } from "../services/auth.service";
 import passport from "passport";
 
 export const googleLoginCallback = asyncHandler(
-  async (req: Request, res: Response) => {
-    const currentWorkspace = req.user?.currentWorkspace;
-
-    if (!currentWorkspace) {
+  async (req: Request, res: Response, next: NextFunction) => {
+    if (!req.user) {
       return res.redirect(
         `${config.FRONTEND_GOOGLE_CALLBACK_URL}?status=failure`
       );
     }
 
-    return res.redirect(
-      `${config.FRONTEND_ORIGIN}/workspace/${currentWorkspace}`
-    );
+    req.login(req.user, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+      const currentWorkspace = (req.user as any).currentWorkspace;
+      if (!currentWorkspace) {
+        return res.redirect(
+          `${config.FRONTEND_GOOGLE_CALLBACK_URL}?status=failure`
+        );
+      }
+
+      return res.redirect(
+        `${config.FRONTEND_ORIGIN}/workspace/${currentWorkspace}`
+      );
+    });
   }
 );
+
 
 export const registerUserController = asyncHandler(
   async (req: Request, res: Response) => {
