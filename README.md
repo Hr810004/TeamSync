@@ -1,8 +1,9 @@
+# 🌟 Advanced MERN B2B Teams Project Management SaaS - *TeamSync*  
+
 ## 📌 Project Overview  
 
 Welcome to **TeamSync**, a powerful and scalable multi-tenancy project management system built with **Node.js**, **MongoDB**, and **React**. Designed for real-world B2B needs, this project delivers features like Google Sign-In, workspace management, project tracking, task collaboration, role-based permissions, and more. Perfect for developers aiming to create SaaS-based team collaboration platforms.  
 
----
 
 ## 🌟 Key Features  
 
@@ -57,20 +58,6 @@ GOOGLE_CALLBACK_URL=http://localhost:8000/api/auth/google/callback
 FRONTEND_ORIGIN=http://localhost:3000
 FRONTEND_GOOGLE_CALLBACK_URL=http://localhost:3000/google/callback
 ```  
-
-### 2. Run the Application  
-
-Install dependencies and start the development server:  
-
-```bash  
-npm install  
-npm run dev  
-```  
-
-Access the backend at `http://localhost:8000`.  
-
----
-
 ## 🌐 Deploying TeamSync  
 
 ### 1. Add Environment Variables  
@@ -78,21 +65,6 @@ Add the `.env` variables to your hosting platform (e.g., Vercel).
 
 ### 2. Deploy  
 Deploy your app using your preferred method to make it live.  
-
----
-
-## 📚 Comprehensive Guide  
-
-**🚀 Deepen Your Understanding!**  
-We’ve developed an all-encompassing guide for this project that explains:  
-
-- The architecture and design principles behind TeamSync  
-- Step-by-step breakdowns of each feature  
-- Advanced techniques for implementing seeding, Mongoose transactions, and performance optimizations  
-- Insights into multi-tenancy and role-based permission models  
-- Best practices for building scalable SaaS applications  
-
-This guide ensures you gain a thorough understanding of every concept and feature in TeamSync, empowering you to build similar systems or expand upon this project.  
 
 ---
 
