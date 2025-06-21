@@ -36,12 +36,12 @@ app.use(
 
 app.use(
   session({
-    name: "session",
+    name: "connect.sid", // <== very important for compatibility
     keys: [config.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000,
-    secure: config.NODE_ENV === "production",
+    secure: true, // always true for Render HTTPS
     httpOnly: true,
-    sameSite: "none",
+    sameSite: "none", // allow cross-site cookies
   })
 );
 
