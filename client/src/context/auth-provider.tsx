@@ -30,7 +30,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const workspaceId = useWorkspaceId();
   const { saveToken, removeToken } = useAuthToken();
 
   const {
@@ -41,6 +40,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     refetch: refetchAuth,
   } = useAuth();
   const user = authData?.user;
+
+  const workspaceId = useWorkspaceId() || user?.currentWorkspace?._id || "";
 
   const {
     data: workspaceData,
