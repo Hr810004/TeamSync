@@ -29,12 +29,14 @@ API.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const { data, status } = error.response;
+    const { data, status } = error.response || {};
 
     if (status === 401) {
-      // Remove token and redirect to login
+      // Remove token and redirect to login ONLY if not already there
       localStorage.removeItem('authToken');
-      window.location.href = "/";
+      if (window.location.pathname !== "/") {
+        window.location.href = "/";
+      }
     }
 
     const customError: CustomError = {
