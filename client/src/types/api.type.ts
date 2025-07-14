@@ -7,10 +7,8 @@ import {
 export type loginType = { email: string; password: string };
 export type LoginResponseType = {
   message: string;
-  user: {
-    _id: string;
-    currentWorkspace: string;
-  };
+  token: string;
+  user: UserType;
 };
 
 export type registerType = {

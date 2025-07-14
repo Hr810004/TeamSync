@@ -31,7 +31,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const workspaceId = useWorkspaceId();
-  const { token, saveToken, removeToken } = useAuthToken();
+  const { saveToken, removeToken } = useAuthToken();
 
   const {
     data: authData,
