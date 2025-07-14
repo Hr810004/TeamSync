@@ -35,7 +35,7 @@ const TaskTable = () => {
   const [pageSize, setPageSize] = useState(10);
 
   const [filters, setFilters] = useTaskTableFilter();
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
   const columns = getColumns(projectId);
 
   const { data, isLoading } = useQuery({
@@ -105,7 +105,7 @@ const DataTableFilterToolbar: FC<DataTableFilterToolbarProps> = ({
   filters,
   setFilters,
 }) => {
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { data } = useGetProjectsInWorkspaceQuery({
     workspaceId,
