@@ -8,14 +8,14 @@ const isAuthenticated = async (req: Request, res: Response, next: NextFunction) 
     const token = extractTokenFromHeader(req.headers.authorization);
     
     if (!token) {
-      throw new UnauthorizedException("No token provided. Please log in.");
+      return next(new UnauthorizedException("No token provided. Please log in."));
     }
 
     const decoded = verifyToken(token);
     const user = await getUserByIdService(decoded.userId);
     
     if (!user) {
-      throw new UnauthorizedException("User not found. Please log in.");
+      return next(new UnauthorizedException("User not found. Please log in."));
     }
 
     // Attach user to request object
@@ -23,9 +23,9 @@ const isAuthenticated = async (req: Request, res: Response, next: NextFunction) 
     next();
   } catch (error: any) {
     if (error.message === 'Invalid token') {
-      throw new UnauthorizedException("Invalid token. Please log in.");
+      return next(new UnauthorizedException("Invalid token. Please log in."));
     }
-    throw error;
+    return next(error);
   }
 };
 
