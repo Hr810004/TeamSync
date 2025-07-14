@@ -43,6 +43,8 @@ const seedRoles = async () => {
     console.log("Session ended.");
 
     console.log("Seeding completed successfully.");
+    await mongoose.disconnect();
+    process.exit(0);
   } catch (error) {
     console.error("Error during seeding:", error);
   }
