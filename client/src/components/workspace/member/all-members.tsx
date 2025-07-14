@@ -147,7 +147,7 @@ const AllMembers = () => {
                                       onSelect={() => {
                                         handleSelect(
                                           role._id,
-                                          memberUserId
+                                          String(memberUserId)
                                         );
                                       }}
                                     >
