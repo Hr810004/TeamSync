@@ -76,7 +76,12 @@ export type AllWorkspaceResponseType = {
 export type WorkspaceWithMembersType = WorkspaceType & {
   members: {
     _id: string;
-    userId: string;
+    userId: string | {
+      _id: string;
+      name: string;
+      email: string;
+      profilePicture: string | null;
+    };
     workspaceId: string;
     role: {
       _id: string;
