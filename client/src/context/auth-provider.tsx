@@ -77,6 +77,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const permissions = usePermissions(user, workspace);
 
+  // Debug logging
+  console.log('[AuthProvider] user:', user);
+  console.log('[AuthProvider] workspace:', workspace);
+  console.log('[AuthProvider] permissions:', permissions);
+
   const hasPermission = (permission: PermissionType): boolean => {
     return permissions.includes(permission);
   };

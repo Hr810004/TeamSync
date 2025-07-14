@@ -29,6 +29,10 @@ const usePermissions = (
           return false;
         }
       );
+      // Debug logging
+      console.log('[usePermissions] user:', user);
+      console.log('[usePermissions] workspace:', workspace);
+      console.log('[usePermissions] found member:', member);
       if (member) {
         setPermissions(member.role.permissions || []);
       }

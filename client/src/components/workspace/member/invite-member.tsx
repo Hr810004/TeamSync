@@ -10,8 +10,13 @@ import PermissionsGuard from "@/components/resuable/permission-guard";
 import { Permissions } from "@/constant";
 
 const InviteMember = () => {
-  const { workspace, workspaceLoading } = useAuthContext();
+  const { workspace, workspaceLoading, user, hasPermission } = useAuthContext();
   const [copied, setCopied] = useState(false);
+
+  // Debug logging
+  console.log('[InviteMember] user:', user);
+  console.log('[InviteMember] workspace:', workspace);
+  console.log('[InviteMember] has ADD_MEMBER:', hasPermission && hasPermission(Permissions.ADD_MEMBER));
 
   const inviteUrl = workspace
     ? `${window.location.origin}${BASE_ROUTE.INVITE_URL.replace(
