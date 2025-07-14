@@ -7,16 +7,19 @@ import App from "./App.tsx";
 import QueryProvider from "./context/query-provider.tsx";
 import { Toaster } from "./components/ui/toaster.tsx";
 import { AuthProvider } from "./context/auth-provider";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryProvider>
-      <AuthProvider>
-        <NuqsAdapter>
-          <App />
-        </NuqsAdapter>
-        <Toaster />
-      </AuthProvider>
+      <NuqsAdapter>
+        <BrowserRouter>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+          <Toaster />
+        </BrowserRouter>
+      </NuqsAdapter>
     </QueryProvider>
   </StrictMode>
 );
