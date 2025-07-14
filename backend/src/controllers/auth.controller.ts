@@ -26,6 +26,9 @@ export const googleLoginCallback = asyncHandler(
       currentWorkspace: currentWorkspace.toString(),
     });
 
+    console.log('[Google OAuth] Redirecting to:', `${config.FRONTEND_ORIGIN}/workspace/${currentWorkspace}?token=${token}`);
+    console.log('[Google OAuth] Token:', token);
+
     return res.redirect(
       `${config.FRONTEND_ORIGIN}/workspace/${currentWorkspace}?token=${token}`
     );

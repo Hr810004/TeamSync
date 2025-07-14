@@ -54,6 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   // Handle token from URL (for Google OAuth callback)
   useEffect(() => {
     const urlToken = searchParams.get('token');
+    console.log('[AuthProvider] Token from URL:', urlToken);
     if (urlToken) {
       saveToken(urlToken);
       // Remove token from URL
