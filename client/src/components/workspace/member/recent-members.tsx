@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { Loader } from "lucide-react";
 
 const RecentMembers = () => {
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
   const { data, isPending } = useGetWorkspaceMembers(workspaceId);
 
   const members = data?.members || [];

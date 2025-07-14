@@ -15,7 +15,7 @@ const DeleteWorkspaceCard = () => {
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { open, onOpenDialog, onCloseDialog } = useConfirmDialog();
 

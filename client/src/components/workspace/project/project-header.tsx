@@ -12,7 +12,7 @@ const ProjectHeader = () => {
   const param = useParams();
   const projectId = param.projectId as string;
 
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { data, isPending, isError } = useQuery({
     queryKey: ["singleProject", projectId],

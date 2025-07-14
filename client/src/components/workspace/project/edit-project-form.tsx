@@ -31,7 +31,7 @@ export default function EditProjectForm(props: {
   onClose: () => void;
 }) {
   const { project, onClose } = props;
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
   const queryClient = useQueryClient();
 
   const [emoji, setEmoji] = useState("📊");

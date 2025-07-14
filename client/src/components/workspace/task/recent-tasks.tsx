@@ -14,7 +14,7 @@ import { format } from "date-fns";
 import { Loader } from "lucide-react";
 
 const RecentTasks = () => {
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { data, isLoading } = useQuery({
     queryKey: ["all-tasks", workspaceId],

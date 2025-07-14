@@ -30,7 +30,7 @@ const AllMembers = () => {
   const canChangeMemberRole = hasPermission(Permissions.CHANGE_MEMBER_ROLE);
 
   const queryClient = useQueryClient();
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { data, isPending } = useGetWorkspaceMembers(workspaceId);
   const members = data?.members || [];

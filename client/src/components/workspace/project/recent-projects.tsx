@@ -7,7 +7,7 @@ import { getAvatarColor, getAvatarFallbackText } from "@/lib/helper";
 import { format } from "date-fns";
 
 const RecentProjects = () => {
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { data, isPending } = useGetProjectsInWorkspaceQuery({
     workspaceId,

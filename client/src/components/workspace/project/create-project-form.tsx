@@ -33,7 +33,7 @@ export default function CreateProjectForm({
 }) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const [emoji, setEmoji] = useState("📊");
 

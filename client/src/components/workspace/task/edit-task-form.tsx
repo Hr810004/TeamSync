@@ -37,7 +37,7 @@ import { TaskType } from "@/types/api.type";
 
 export default function EditTaskForm({ task, onClose }: { task: TaskType; onClose: () => void }) {
   const queryClient = useQueryClient();
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { mutate, isPending } = useMutation({
     mutationFn: editTaskMutationFn,

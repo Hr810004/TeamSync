@@ -49,7 +49,7 @@ export default function CreateTaskForm(props: {
   const { projectId, onClose } = props;
 
   const queryClient = useQueryClient();
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { mutate, isPending } = useMutation({
     mutationFn: createTaskMutationFn,

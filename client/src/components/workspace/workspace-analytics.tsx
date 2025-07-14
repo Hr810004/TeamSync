@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getWorkspaceAnalyticsQueryFn } from "@/lib/api";
 
 const WorkspaceAnalytics = () => {
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { data, isPending } = useQuery({
     queryKey: ["workspace-analytics", workspaceId],

@@ -43,7 +43,7 @@ export function NavProjects() {
   const pathname = location.pathname;
 
   const queryClient = useQueryClient();
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { isMobile } = useSidebar();
   const { onOpen } = useCreateProjectDialog();

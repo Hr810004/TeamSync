@@ -28,7 +28,7 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
   const [openEditDialog, setOpenEditDialog] = useState(false); // State for edit dialog
 
   const queryClient = useQueryClient();
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { mutate, isPending } = useMutation({
     mutationFn: deleteTaskMutationFn,

@@ -26,7 +26,7 @@ export default function EditWorkspaceForm() {
   const canEditWorkspace = hasPermission(Permissions.EDIT_WORKSPACE);
 
   const queryClient = useQueryClient();
-  const workspaceId = useWorkspaceId();
+  const workspaceId = useWorkspaceId() || "";
 
   const { mutate, isPending } = useMutation({
     mutationFn: editWorkspaceMutationFn,
