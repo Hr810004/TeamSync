@@ -77,15 +77,20 @@ const AllMembers = () => {
       ) : null}
 
       {members?.map((member) => {
-        const name = member.userId?.name;
+        // Support both string and object for userId
+        const userIdObj = typeof member.userId === 'object' && member.userId !== null ? member.userId : null;
+        const name = userIdObj ? userIdObj.name : '';
         const initials = getAvatarFallbackText(name);
         const avatarColor = getAvatarColor(name);
+        const email = userIdObj ? userIdObj.email : '';
+        const profilePicture = userIdObj ? userIdObj.profilePicture : '';
+        const memberUserId = userIdObj ? userIdObj._id : member.userId;
         return (
           <div className="flex items-center justify-between space-x-4">
             <div className="flex items-center space-x-4">
               <Avatar className="h-8 w-8">
                 <AvatarImage
-                  src={member.userId?.profilePicture || ""}
+                  src={profilePicture || ""}
                   alt="Image"
                 />
                 <AvatarFallback className={avatarColor}>
@@ -95,7 +100,7 @@ const AllMembers = () => {
               <div>
                 <p className="text-sm font-medium leading-none">{name}</p>
                 <p className="text-sm text-muted-foreground">
-                  {member.userId.email}
+                  {email}
                 </p>
               </div>
             </div>
@@ -109,11 +114,10 @@ const AllMembers = () => {
                     disabled={
                       isLoading ||
                       !canChangeMemberRole ||
-                      member.userId._id === user?._id
+                      memberUserId === user?._id
                     }
                   >
-                    {member.role.name?.toLowerCase()}{" "}
-                    {canChangeMemberRole && member.userId._id !== user?._id && (
+                    {member.role.name?.toLowerCase()} {canChangeMemberRole && memberUserId !== user?._id && (
                       <ChevronDown className="text-muted-foreground" />
                     )}
                   </Button>
@@ -143,7 +147,7 @@ const AllMembers = () => {
                                       onSelect={() => {
                                         handleSelect(
                                           role._id,
-                                          member.userId._id
+                                          memberUserId
                                         );
                                       }}
                                     >
