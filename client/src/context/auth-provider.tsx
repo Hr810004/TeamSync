@@ -60,6 +60,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       const newUrl = new URL(window.location.href);
       newUrl.searchParams.delete('token');
       window.history.replaceState({}, '', newUrl.toString());
+      // Force a reload so axios picks up the token
+      window.location.reload();
     }
   }, [searchParams, saveToken]);
 
