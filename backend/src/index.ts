@@ -32,8 +32,13 @@ app.use(
   cors({
     origin: config.FRONTEND_ORIGIN,
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
+
+// Handle preflight requests
+app.options('*', cors());
 
 app.get(
   `/`,
@@ -44,6 +49,17 @@ app.get(
     );
     return res.status(HTTPSTATUS.OK).json({
       message: "Hello Subscribe to the channel & share",
+    });
+  })
+);
+
+// Test endpoint to verify API is working
+app.get(
+  `${BASE_PATH}/test`,
+  asyncHandler(async (req: Request, res: Response) => {
+    return res.status(HTTPSTATUS.OK).json({
+      message: "API is working!",
+      timestamp: new Date().toISOString(),
     });
   })
 );
