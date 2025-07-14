@@ -2,6 +2,15 @@ import { PermissionType } from "@/constant";
 import { UserType, WorkspaceWithMembersType } from "@/types/api.type";
 import { useEffect, useMemo, useState } from "react";
 
+function isUserIdObject(userId: unknown): userId is { _id: string } {
+  return (
+    typeof userId === 'object' &&
+    userId !== null &&
+    '_id' in userId &&
+    typeof (userId as any)._id === 'string'
+  );
+}
+
 const usePermissions = (
   user: UserType | undefined,
   workspace: WorkspaceWithMembersType | undefined
@@ -12,10 +21,9 @@ const usePermissions = (
     if (user && workspace) {
       const member = workspace.members.find(
         (member) => {
-          // Support both string and object for userId
           if (typeof member.userId === 'string') {
             return member.userId === user._id;
-          } else if (typeof member.userId === 'object' && member.userId !== null) {
+          } else if (isUserIdObject(member.userId)) {
             return member.userId._id === user._id;
           }
           return false;
