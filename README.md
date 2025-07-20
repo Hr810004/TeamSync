@@ -1,85 +1,238 @@
-# 🌟 Advanced MERN B2B Teams Project Management SaaS - *TeamSync*  
+# 🚀 TeamSync – Collaborative Project Management Platform
 
-## 📌 Project Overview  
+## 📝 Project Overview
 
-Welcome to **TeamSync**, a powerful and scalable multi-tenancy project management system built with **Node.js**, **MongoDB**, and **React**. Designed for real-world B2B needs, this project delivers features like Google Sign-In, workspace management, project tracking, task collaboration, role-based permissions, and more. Perfect for developers aiming to create SaaS-based team collaboration platforms.  
-
----
-
-## 🌟 Key Features  
-
-- 🔐 **Authentication** (Google Sign-In, Email, Password)  
-- 🏢 **Create & Manage Multiple Workspaces**  
-- 📊 **Projects & Epics Management**  
-- ✅ **Tasks** (CRUD, Status, Priority, Assignee)  
-- 👥 **Roles & Permissions** (Owner, Admin, Member)  
-- ✉️ **Invite Members to Workspaces**  
-- 🔍 **Filters & Search** (Status, Priority, AssignedTo)  
-- 📈 **Analytics Dashboard**  
-- 📅 **Pagination & Load More**  
-- 🔒 **Cookie Session Management**  
-- 🚪 **Logout & Session Termination**  
-- 🌱 **Seeding** for Test Data  
-- 💾 **Mongoose Transactions** for Robust Data Integrity  
-- 🌐 **Built with MERN Stack** (Node.js, MongoDB, React, TypeScript)  
+**TeamSync** is a comprehensive collaborative project management platform designed for modern teams. It streamlines workspace management, project collaboration, task tracking, and team communication—empowering organizations to work more efficiently with real-time collaboration, role-based permissions, and intelligent project analytics.
 
 ---
 
-## 🚀 Tools & Technologies  
+## 🌟 Key Features
 
-This project leverages the latest tools and frameworks for modern development:  
+- **Workspace Management**
+  - Create and manage multiple workspaces for different teams or organizations
+  - Role-based access control with granular permissions
+  - Workspace analytics and performance insights
+  - Member invitation and management system
 
-- **Node.js**: Scalable backend architecture  
-- **React.js**: Dynamic frontend framework  
-- **MongoDB & Mongoose**: Flexible and scalable database solutions  
-- **Google OAuth**: Seamless Google Sign-In integration  
-- **TypeScript**: For a type-safe codebase  
-- **TailwindCSS & Shadcn UI**: Beautiful, responsive design  
-- **Vite.js**: Lightning-fast frontend development  
+- **Project Collaboration**
+  - **Dynamic Project Creation:** Instantly create projects with customizable settings, deadlines, and team assignments
+  - **Real-time Project Analytics:** Track project progress, completion rates, and team performance with interactive charts
+  - **Project Templates:** Pre-built templates for different project types (Agile, Waterfall, Kanban)
+  - **Project History & Versioning:** Track changes and maintain project history
+
+- **Task Management System**
+  - **Advanced Task Creation:** Create tasks with priorities, assignees, due dates, and custom fields
+  - **Task Status Tracking:** Real-time status updates with visual progress indicators
+  - **Task Dependencies:** Set up task dependencies and critical path analysis
+  - **Bulk Task Operations:** Select and modify multiple tasks simultaneously
+  - **Task Comments & Attachments:** Collaborative task discussion with file sharing
+
+- **Team Member Management**
+  - **Role-Based Permissions:** Granular permission system (Admin, Manager, Member, Viewer)
+  - **Member Invitations:** Email-based invitation system with role assignment
+  - **Member Analytics:** Track individual and team performance metrics
+  - **Activity Timeline:** Monitor team activities and contributions
+
+- **Real-time Collaboration**
+  - **Live Updates:** Real-time synchronization across all team members
+  - **Activity Notifications:** Instant notifications for task updates, comments, and deadlines
+  - **Collaborative Editing:** Multiple users can work on the same project simultaneously
+  - **Conflict Resolution:** Intelligent conflict detection and resolution
+
+- **Analytics & Reporting**
+  - **Workspace Analytics:** Comprehensive dashboard with key performance indicators
+  - **Project Performance Metrics:** Track completion rates, time tracking, and resource utilization
+  - **Team Productivity Insights:** Analyze team efficiency and identify bottlenecks
+  - **Custom Reports:** Generate custom reports for stakeholders and management
+
+- **User Authentication & Security**
+  - **Google OAuth Integration:** Secure authentication with Google accounts
+  - **JWT Token Management:** Secure session management with automatic token refresh
+  - **Permission Guards:** Route-level security with role-based access control
+  - **Data Encryption:** All sensitive data encrypted and securely stored
+
+- **Modern Dashboard & UI**
+  - **Responsive Design:** Works seamlessly on desktop, tablet, and mobile devices
+  - **Dark/Light Mode:** Toggle between themes for comfortable viewing
+  - **Accessible Interface:** WCAG compliant design for inclusive user experience
+  - **Customizable Layout:** Drag-and-drop interface customization
+
+- **Advanced Features**
+  - **Task Filtering & Search:** Advanced filtering by status, assignee, priority, and date ranges
+  - **Export Functionality:** Export projects and tasks to various formats (PDF, CSV, Excel)
+  - **Integration Ready:** API endpoints for third-party integrations
+  - **Backup & Recovery:** Automatic data backup and recovery systems
 
 ---
 
-## 🔄 Getting Started  
+## 🛠️ Tools & Technologies
 
-### 1. Set Up Environment Variables  
+### Frontend
+- **React 18** with TypeScript
+- **Vite** (Build tool)
+- **TailwindCSS** (Styling)
+- **shadcn/ui** (UI components)
+- **React Query** (Data fetching)
+- **React Hook Form** (Form management)
+- **Zod** (Validation)
+- **Axios** (HTTP client)
 
-Create a `.env` file in the root of your project and configure these variables:  
+### Backend
+- **Node.js** with TypeScript
+- **Express.js** (Web framework)
+- **Prisma** (ORM)
+- **PostgreSQL** (Database)
+- **JWT** (Authentication)
+- **Passport.js** (OAuth strategies)
+- **bcrypt** (Password hashing)
+- **UUID** (Unique identifiers)
 
-```plaintext  
-PORT=8000
+### Development & Deployment
+- **ESLint** (Code linting)
+- **TypeScript** (Type safety)
+- **Vercel** (Deployment)
+- **Git** (Version control)
+
+---
+
+## 🚦 Getting Started
+
+### 1. Set Up Environment Variables
+
+Create a `.env` file in the backend directory and add:
+
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/teamsync"
+JWT_SECRET="your-jwt-secret-key"
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+PORT=5000
 NODE_ENV=development
-MONGO_URI="mongodb+srv://<username>:<password>@<>.mongodb.net/teamsync_db"  
+```
 
-SESSION_SECRET="session_secret_key"
+### 2. Install Dependencies
 
-GOOGLE_CLIENT_ID=<your-google-client-id>  
-GOOGLE_CLIENT_SECRET=<your-google-client-secret>  
-GOOGLE_CALLBACK_URL=http://localhost:8000/api/auth/google/callback
+#### Backend Setup
+```bash
+cd backend
+npm install
+```
 
-FRONTEND_ORIGIN=http://localhost:3000
-FRONTEND_GOOGLE_CALLBACK_URL=http://localhost:3000/google/callback
-```  
+#### Frontend Setup
+```bash
+cd client
+npm install
+```
 
-### 2. Run the Application  
+### 3. Set Up the Database
 
-Install dependencies and start the development server:  
+```bash
+cd backend
+npx prisma migrate dev
+npx prisma generate
+npx prisma db seed
+```
 
-```bash  
-npm install  
-npm run dev  
-```  
+### 4. Run the Application
 
-Access the backend at `http://localhost:5000`.  
+#### Start Backend Server
+```bash
+cd backend
+npm run dev
+```
+
+#### Start Frontend Development Server
+```bash
+cd client
+npm run dev
+```
+
+The application will be available at:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5000
 
 ---
 
-## 🌐 Deploying TeamSync  
+## 🌐 Deployment
 
-### 1. Add Environment Variables  
-Add the `.env` variables to your hosting platform (e.g., Vercel).  
+### Backend Deployment (Vercel)
+1. Connect your repository to Vercel
+2. Set environment variables in Vercel dashboard
+3. Deploy with automatic builds
 
-### 2. Deploy  
-Deploy your app using your preferred method to make it live.  
+### Frontend Deployment (Vercel)
+1. Connect your repository to Vercel
+2. Set build command: `npm run build`
+3. Set output directory: `dist`
+4. Deploy with automatic builds
+
+**Explore:** [Your deployed URL here]
 
 ---
+
+## 🙌 Credits
+
+Built by [Harsh810](https://harsh810.vercel.app) – Inspired by modern project management tools and collaborative platforms.
+
+---
+
+## 📖 How It Works
+
+1. **Workspace Setup:** Create workspaces for different teams or organizations
+2. **Team Invitation:** Invite team members with appropriate roles and permissions
+3. **Project Creation:** Set up projects with tasks, deadlines, and team assignments
+4. **Collaborative Work:** Team members work together on tasks with real-time updates
+5. **Progress Tracking:** Monitor project progress and team performance through analytics
+6. **Reporting:** Generate reports and insights for stakeholders
+
+---
+
+## ❓ FAQ
+
+- **What makes TeamSync unique?**  
+  TeamSync combines real-time collaboration with advanced project management features, offering role-based permissions, comprehensive analytics, and seamless team coordination—all in a modern, accessible interface.
+
+- **How does TeamSync handle team permissions?**  
+  TeamSync uses a granular role-based permission system (Admin, Manager, Member, Viewer) that controls access to workspaces, projects, and tasks based on user roles.
+
+- **How secure is my team's data?**  
+  All data is encrypted and securely stored. JWT authentication and Google OAuth ensure your information is protected. Role-based access control prevents unauthorized access.
+
+- **Can I integrate TeamSync with other tools?**  
+  TeamSync provides RESTful APIs that allow integration with third-party tools and services. Documentation for API endpoints is available for developers.
+
+---
+
+## 📄 Terms & Privacy Policy
+
+By using TeamSync, you agree to our terms of service and privacy policy. Your data is securely stored and never shared with third parties. For full details, please refer to our privacy policy document or contact us for more information.
+
+---
+
+## 📸 Screenshots
+
+Below are example screenshots for each major feature. Replace the image paths with your actual screenshot files in the `public/` directory.
+
+| Feature                        | Screenshot                                      |
+|--------------------------------|-------------------------------------------------|
+| Dashboard                      | ![Dashboard](public/images/dashboard.png)       |
+| Workspace Management           | ![Workspace](public/images/workspace.png)       |
+| Project Creation               | ![Project](public/images/project.png)           |
+| Task Management                | ![Tasks](public/images/tasks.png)               |
+| Team Members                   | ![Members](public/images/members.png)           |
+| Analytics                      | ![Analytics](public/images/analytics.png)       |
+| Settings                       | ![Settings](public/images/settings.png)         |
+| Mobile Responsive              | ![Mobile](public/images/mobile.png)             |
+
+---
+
+## ⚠️ Intellectual Property Notice
+
+The source code and features of this project are the intellectual property of Harsh810. Copying, modifying, or reusing any part of this code or its features is strictly prohibited.
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
